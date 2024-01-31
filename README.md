@@ -1,4 +1,4 @@
-[![Testsuite](https://github.com/CalebFuster/HGSpy/actions/workflows/run_examples.yml/badge.svg)](https://github.com/CalebFuster/HGSpy/actions)
+[![Testsuite](https://github.com/ManelSoria/HGSpy/actions/workflows/run_examples.yml/badge.svg)](https://github.com/CalebFuster/HGSpy/actions)
 [![License](https://img.shields.io/badge/license-GPL3-orange)](https://opensource.org/license/gpl-3-0/)
 
 # HGSpy
