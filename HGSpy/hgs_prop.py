@@ -117,76 +117,6 @@ def partial(n, P, ids, hgs_data):
 
 
 ## ---------- Function   ---------- #
-@cr('HGS.single')
-def hgs_single(species, prop, T, P, hgs_data=HGSData.load()):
-	"""
-	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
-
-	res = hgs_single(species, prop, T, P)
-
-	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
-
-	hgs_single returns the property of a species
-
-	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
-	Inputs:
-	-----------------------------------------------------------------------------
-	species --> String or numbers of species
-	prop --> Property requested (see below)
-	T --> [K] Temperature
-	P --> [bar] Pressure
-
-	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
-	Outputs:
-	-----------------------------------------------------------------------------
-	res --> Property result
-		  mm [g/mol]
-		  cp [kJ/(mol*K)]
-		  cv [kJ/(mol*K)]
-		  h [kJ/mol]
-		  s [kJ/(mol*K)]
-		  g [kJ/mol]
-
-	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
-	* Python HGS 1.0 from Matlab HGS 2.0
-	* By Caleb Fuster, Manel Soria and Arnau Miró
-	* ESEIAAT UPC
-	"""
-	ids = hgs_data.id(species)[0]
-	# args: (str) - Property(need to be calculated before)
-	#       (mm)  - Molar mass()
-	#       (cp)  - Cp(10 - Burcat)
-	#       (cv)  - Cv(10 - Burcat & 2 - Cp)
-	#        (h)  - H(10 - Burcat)
-	#        (s)  - S(10 - Burcat)
-	#        (g)  - G(10 - Burcat)
-	#       (Rg)  - Rg(1 - Mm)
-	#    (gamma)  - Gamma(2 - Cp & 3 - Cv)
-	#        (a)  - Sound Velocity(1 - Mm & 2 - Cp & 3 - Cv & 7 - Rg & 8 - Gamma)
-	#     (coef)  - Burcat Coef()
-	if prop.lower() == 'mm': # Molar mass
-		return hgs_data['mm'][ids]
-	if prop.lower() == 'cp': # Cp
-		return hgs_data.cp(ids,T)
-	if prop.lower() == 'cv': # Cv
-		return hgs_data.cv(ids,T)
-	if prop.lower() == 'h': # H
-		return hgs_data.h(ids,T)
-	if prop.lower() == 's': # S
-		return hgs_data.s(ids,T,P)
-	if prop.lower() == 'g': # G
-		return hgs_data.g(ids,T,P)
-	if prop.lower() == 'rg': # Rg
-		return rg(hgs_data['mm'][ids])
-	if prop.lower() == 'gamma': # Gamma
-		return gamma(hgs_data.cp(ids,T),hgs_data.cv(ids,T))
-	if prop.lower() == 'a': # a (Sound velocity)
-		return sound(gamma(hgs_data.cp(ids,T),hgs_data.cv(ids,T)),rg(hgs_data['mm'][ids]),T)
-	if prop.lower() == 'coef': # Burcat coefficients
-		return hgs_data.coef(ids,T)
-	raiseError(f'Property {prop} not understood!')
-
-
 def hgs_prop_ids(ids, n, T, P, args, hgs_data):
 	'''
 	Main function for hgs_prop working with ids instead of species
@@ -249,6 +179,54 @@ def hgs_prop_ids(ids, n, T, P, args, hgs_data):
 			out.append([hgs_data.coef(i,Ti) for i,Ti in zip(ids,T)])
 
 	return out
+
+@cr('HGS.single')
+def hgs_single(species, prop, T, P, hgs_data=HGSData.load()):
+	"""
+	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
+
+	res = hgs_single(species, prop, T, P)
+
+	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
+
+	hgs_single returns the property of a species
+
+	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
+	Inputs:
+	-----------------------------------------------------------------------------
+	species --> String or numbers of species
+	prop --> Property requested (see below)
+	T --> [K] Temperature
+	P --> [bar] Pressure
+
+	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
+	Outputs:
+	-----------------------------------------------------------------------------
+	res --> Property result
+		  mm [g/mol]
+		  cp [kJ/(mol*K)]
+		  cv [kJ/(mol*K)]
+		  h [kJ/mol]
+		  s [kJ/(mol*K)]
+		  g [kJ/mol]
+
+	*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
+	* Python HGS 1.0 from Matlab HGS 2.0
+	* By Caleb Fuster, Manel Soria and Arnau Miró
+	* ESEIAAT UPC
+	"""
+	if not prop.lower() in ['mm','cp','cv','h','s','g','rg','gamma','a','coef']:
+		raiseError(f'Property {prop} not understood!')
+	if type(T) in (float,int,np.float64,np.float32): T = [T]
+
+	ids = hgs_data.id(species)
+	n   = [1]
+	# Rebuild mixtures
+	if np.max(ids) >= len(hgs_data):
+		species, n, T = hgs_data.rebuild(species,[1],T)
+		ids           = hgs_data.id(species)
+	
+	return hgs_prop_ids(ids, n, T, P, [prop], hgs_data)[0]
 
 @cr('HGS.prop')
 def hgs_prop(species, n, T, P, *args, hgs_data=HGSData.load()):

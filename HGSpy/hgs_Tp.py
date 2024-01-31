@@ -96,6 +96,7 @@ def hgs_Tp(species, n0, typ, V0, P, flow='shifting', solver='hgs_secant', Tstar=
 	# Rebuild mixtures
 	if np.max(ids) >= len(hgs_data):
 		species, n0, V0 = hgs_data.rebuild(species,n0,V0)
+		ids             = hgs_data.id(species)
 		
 	Tp, n, flag = hgs_Tp_ids(ids, n0, typ, V0, P, flow, solver, Tstar, opt_eq, opt_sci, opt_sec, hgs_data)
 
