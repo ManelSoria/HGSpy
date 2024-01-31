@@ -1,0 +1,2 @@
+include HGSpy/data/*.txt
+include HGSpy/data/*.hgs
