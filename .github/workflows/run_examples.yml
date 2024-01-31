@@ -1,0 +1,42 @@
+name: Run examples
+run-name: Running examples of HGSpy by @${{ github.actor }}
+
+on:
+  push:
+    branches: [ "main" ]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:    
+  run-testsuite:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      # Setup MPI and Python for this job
+      - name: Set up Python 3.8.5
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.8.5
+      # Run HGSpy compilation and deployment
+      - name: Set up dependencies
+        run: make requirements
+      - name: Install
+        run: make install
+      # Examples
+      - name: Run examples
+        run: |
+          python Examples/Ex01_properties.py
+          python Examples/Ex02_flame_temperature_no_dis.py
+          python Examples/Ex03_H2O2_liquid.py
+          python Examples/Ex04_eq_CO2.py
+          python Examples/Ex05_equilibrium_H2_O2.py
+          python Examples/Ex06_adiabatic_flame_T.py
+          python Examples/Ex07_C3H8.py
+          python Examples/Ex08_H2_O2_reaction_enthalpy_change.py
+          python Examples/Ex10_Isp_vs_OF_ratio.py
+          python Examples/Ex11_RP1.py
+          python Examples/Ex12_The_MAN_problem.py
+          python Examples/Ex13_RPA_comparison.py
+          python Examples/Ex14_Nozzle_expansion.py   
