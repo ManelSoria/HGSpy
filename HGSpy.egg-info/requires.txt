@@ -1,5 +1,0 @@
-numpy>=1.21.6
-scipy>=1.5.4
-matplotlib
-
-[full]
