@@ -17,7 +17,7 @@ name = "HGSpy"
 #
 # For a discussion on single-sourcing the version, see
 # https://packaging.python.org/guides/single-sourcing-package-version/
-version = "1.0"
+version = "1.1"
 
 # This is a one-line description or tagline of what your project does. This
 # corresponds to the "Summary" metadata field:
@@ -66,7 +66,6 @@ authors = [
 # maintains the project, and a valid email address corresponding to the name
 # listed.
 maintainers = [
-  {name = "Caleb Fuster", email = "calebfuji@gmail.com" },
   {name = "Arnau Miro",   email = "arnau.miro@upc.edu" },
 ]
 
@@ -133,9 +132,9 @@ full = []
 # maintainers, and where to support the project financially. The key is
 # what's used to render the link text on PyPI.
 [project.urls]  # Optional
-"Homepage"    = "https://github.com/CalebFuster/HGSpy"
-"Bug Reports" = "https://github.com/CalebFuster/HGSpy/issues"
-"Source"      = "https://github.com/CalebFuster/HGSpy"
+"Homepage"    = "https://github.com/ManelSoria/HGSpy"
+"Bug Reports" = "https://github.com/ManelSoria/HGSpy/issues"
+"Source"      = "https://github.com/ManelSoria/HGSpy"
 
 # This is configuration specific to the `setuptools` build backend.
 # If you are using a different build backend, you will need to change this.
