@@ -16,7 +16,7 @@ with open('README.md') as f:
 # Main setup
 setup(
 	name             = 'HGSpy',
-	version          = '1.0',
+	version          = '1.1',
 	author           = 'Caleb Fuster, Arnau Miro, Manel Soria',
 	author_email     = 'calebfuji@gmail.com, arnau.miro@upc.edu, manel.soria@upc.edu',
 	maintainer       = 'Arnau Miro',
