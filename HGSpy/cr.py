@@ -6,6 +6,7 @@
 #
 # Arnau Miro, Elena Terzic
 from __future__ import print_function, division
+import os
 
 import numpy as np, time as time_module, functools
 
@@ -231,9 +232,9 @@ def cr(ch_name,suff=0):
 	def decorator(func):
 		@functools.wraps(func)
 		def wrapper(*args,**kwargs):
-			cr_start(ch_name,suff)
+			if os.getenv("UNITTEST", 'True').lower() in ('true', '1', 't'): cr_start(ch_name, suff)
 			out = func(*args,**kwargs)
-			cr_stop(ch_name,suff)
+			if os.getenv("UNITTEST", 'True').lower() in ('true', '1', 't'): cr_stop(ch_name, suff)
 			return out
 		return wrapper
 	return decorator
