@@ -12,8 +12,8 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .cr    import cr, cr_stop
-from .utils import raiseError
+from HGSpy.cr    import cr, cr_stop
+from HGSpy.utils import raiseError
 
 
 def find_hgs_id(name, hgs_data, combination, ns, raise_error):

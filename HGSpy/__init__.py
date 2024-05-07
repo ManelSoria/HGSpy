@@ -14,22 +14,22 @@ HGSDATA  = os.path.join(DATAPATH,'data.hgs')
 RAWDATA  = os.path.join(DATAPATH,'DATA_7_coef.txt')
 
 from .            import data
-from .hgs         import HGSData
-from .definitions import R
-from .cr          import cr_start, cr_stop, cr_reset, cr_info
-from .utils       import set_options, get_options
+from HGSpy.hgs         import HGSData
+from HGSpy.definitions import R
+from HGSpy.cr          import cr_start, cr_stop, cr_reset, cr_info
+from HGSpy.utils       import set_options, get_options
 
 # HGS functions
-from .hgs_id         import hgs_id
-from .hgs_find       import hgs_find
-from .hgs_mixture    import hgs_add_mixture, hgs_subt_mixture, hgs_rebuild
-from .hgs_print      import hgs_print_info
-from .hgs_prop       import hgs_prop as prop, hgs_single as single
-from .hgs_eq         import hgs_eq as eq
-from .hgs_Tp         import hgs_Tp as Tp
-from .hgs_isentropic import hgs_isentropic as isentropic
-from .hgs_nozzle     import hgs_nozzle as nozzle
-from .hgs_solver     import options
+from HGSpy.hgs_id         import hgs_id
+from HGSpy.hgs_find       import hgs_find
+from HGSpy.hgs_mixture    import hgs_add_mixture, hgs_subt_mixture, hgs_rebuild
+from HGSpy.hgs_print      import hgs_print_info
+from HGSpy.hgs_prop       import hgs_prop as prop, hgs_single as single
+from HGSpy.hgs_eq         import hgs_eq as eq
+from HGSpy.hgs_Tp         import hgs_Tp as Tp
+from HGSpy.hgs_isentropic import hgs_isentropic as isentropic
+from HGSpy.hgs_nozzle     import hgs_nozzle as nozzle
+from HGSpy.hgs_solver     import options
 
 # Some predefined functions
 id           = lambda species,hgs_data=HGSData.load(),raise_error=True : hgs_id(species,hgs_data,raise_error)

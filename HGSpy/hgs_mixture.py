@@ -12,8 +12,8 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .cr          import cr
-from .utils       import raiseError
+from HGSpy.cr          import cr
+from HGSpy.utils       import raiseError
 
 
 @cr('HGS.add_mixture')
