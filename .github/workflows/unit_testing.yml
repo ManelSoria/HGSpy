@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ master, next ]
 
+env:
+  UNITTEST: "True"  # Accessible to all jobs and steps
+
+
 jobs:
   test:
     runs-on: ubuntu-latest

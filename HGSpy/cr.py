@@ -232,9 +232,9 @@ def cr(ch_name,suff=0):
 	def decorator(func):
 		@functools.wraps(func)
 		def wrapper(*args,**kwargs):
-			if os.getenv("UNITTEST", 'True').lower() in ('true', '1', 't'): cr_start(ch_name, suff)
+			if not os.getenv("UNITTEST", 'False').lower() in ('true', '1', 't'): cr_start(ch_name, suff)
 			out = func(*args,**kwargs)
-			if os.getenv("UNITTEST", 'True').lower() in ('true', '1', 't'): cr_stop(ch_name, suff)
+			if not os.getenv("UNITTEST", 'False').lower() in ('true', '1', 't'): cr_stop(ch_name, suff)
 			return out
 		return wrapper
 	return decorator
