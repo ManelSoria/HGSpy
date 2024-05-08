@@ -108,6 +108,7 @@ dependencies = [
   "numpy>=1.21.6",
   "scipy>=1.5.4",
   "matplotlib",
+  "parameterized>=0.9.0",
 ]
 
 # List additional groups of dependencies here (e.g. development
