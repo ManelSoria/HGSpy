@@ -12,10 +12,10 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .hgs         import HGSData
-from .cr          import cr
-from .utils       import raiseError
-from .definitions import R
+from HGSpy.hgs         import HGSData
+from HGSpy.cr          import cr
+from HGSpy.utils       import raiseError
+from HGSpy.definitions import R
 
 
 ## ---------- Properties ---------- #

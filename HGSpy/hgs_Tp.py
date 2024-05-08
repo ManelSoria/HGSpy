@@ -12,12 +12,12 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .hgs        import HGSData
-from .cr         import cr
-from .utils      import raiseError
-from .hgs_prop   import hgs_prop_ids
-from .hgs_eq     import options as opt_eq
-from .hgs_solver import hgs_solver, options as opt_sec
+from HGSpy.hgs        import HGSData
+from HGSpy.cr         import cr
+from HGSpy.utils      import raiseError
+from HGSpy.hgs_prop   import hgs_prop_ids
+from HGSpy.hgs_eq     import options as opt_eq
+from HGSpy.hgs_solver import hgs_solver, options as opt_sec
 
 
 def hgs_Tp_ids(ids, n0, typ, V0, P, flow, solver, Tstar, opt_eq, opt_sci, opt_sec, hgs_data):

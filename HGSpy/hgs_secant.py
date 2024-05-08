@@ -12,7 +12,7 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .cr import cr, cr_start, cr_stop
+from HGSpy.cr import cr, cr_start, cr_stop
 
 
 # Secant algorithm
