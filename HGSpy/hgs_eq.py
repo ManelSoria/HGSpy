@@ -13,10 +13,10 @@ from __future__ import print_function, division
 import numpy as np
 from scipy.optimize import minimize, Bounds
 
-from .cr       import cr
-from .hgs      import HGSData
-from .utils    import raiseError, raiseWarning
-from .hgs_prop import hgs_prop_ids
+from HGSpy.cr       import cr
+from HGSpy.hgs      import HGSData
+from HGSpy.utils    import raiseError, raiseWarning
+from HGSpy.hgs_prop import hgs_prop_ids
 
 
 options = {

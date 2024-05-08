@@ -12,12 +12,12 @@ from __future__ import print_function, division
 
 import numpy as np, scipy.optimize
 
-from .hgs        import HGSData
-from .cr         import cr, cr_start, cr_stop
-from .utils      import raiseError
-from .hgs_secant import hgs_secant
-from .hgs_eq     import hgs_eq_ids, options as opt_eq
-from .hgs_prop   import hgs_prop_ids
+from HGSpy.hgs        import HGSData
+from HGSpy.cr         import cr, cr_start, cr_stop
+from HGSpy.utils      import raiseError
+from HGSpy.hgs_secant import hgs_secant
+from HGSpy.hgs_eq     import hgs_eq_ids, options as opt_eq
+from HGSpy.hgs_prop   import hgs_prop_ids
 
 
 options = {

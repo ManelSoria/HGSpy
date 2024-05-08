@@ -12,13 +12,13 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .hgs        import HGSData
-from .cr         import cr
-from .utils      import raiseError, raiseWarning
-from .hgs_prop   import hgs_prop_ids
-from .hgs_eq     import hgs_eq_ids, options as opt_eq
-from .hgs_solver import hgs_solver, options as opt_sec
-from .hgs_secant import hgs_secant
+from HGSpy.hgs        import HGSData
+from HGSpy.cr         import cr
+from HGSpy.utils      import raiseError, raiseWarning
+from HGSpy.hgs_prop   import hgs_prop_ids
+from HGSpy.hgs_eq     import hgs_eq_ids, options as opt_eq
+from HGSpy.hgs_solver import hgs_solver, options as opt_sec
+from HGSpy.hgs_secant import hgs_secant
 
 
 def hastobeS_shifting(S,Tstar,Pstar,ids,ni,opt_eq,hgs_data):
