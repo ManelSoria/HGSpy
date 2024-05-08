@@ -12,14 +12,14 @@ from __future__ import print_function, division
 
 import numpy as np
 
-from .hgs            import HGSData
-from .cr             import cr
-from .utils          import raiseError, raiseWarning
-from .definitions    import g0
-from .hgs_prop       import hgs_prop_ids
-from .hgs_eq         import options as opt_eq
-from .hgs_solver     import hgs_solver, options as opt_sec
-from .hgs_isentropic import hgs_isentropic_ids
+from HGSpy.hgs            import HGSData
+from HGSpy.cr             import cr
+from HGSpy.utils          import raiseError, raiseWarning
+from HGSpy.definitions    import g0
+from HGSpy.hgs_prop       import hgs_prop_ids
+from HGSpy.hgs_eq         import options as opt_eq
+from HGSpy.hgs_solver     import hgs_solver, options as opt_sec
+from HGSpy.hgs_isentropic import hgs_isentropic_ids
 
 
 @cr('HGS.nozzle')

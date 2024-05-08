@@ -10,7 +10,7 @@ ESEIAAT UPC
 '''
 from __future__ import print_function, division
 
-from .cr          import cr
+from HGSpy.cr          import cr
 
 
 @cr('HGS.find')

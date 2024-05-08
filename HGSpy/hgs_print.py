@@ -10,7 +10,7 @@ ESEIAAT UPC
 '''
 from __future__ import print_function, division
 
-from .utils import raiseError
+from HGSpy.utils import raiseError
 
 
 def hgs_print_info(name,hgs_data):
