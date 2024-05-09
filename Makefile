@@ -31,7 +31,7 @@ install:
 	@${PIP} install .
 
 install_dev: 
-	@${PIP} install -e .dev
+	@${PIP} install -e .[dev]
 
 package-build:
 	@${PYTHON} -m build
