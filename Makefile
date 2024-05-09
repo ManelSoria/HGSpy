@@ -20,21 +20,18 @@ PIP    = pip
 
 # One rule to compile them all, one rule to find them,
 # One rule to bring them all and in the compiler link them.
-all:  requirements install
+all: install_dev
 	@echo ""
 	@echo "HGSpy deployed successfully"
 
 
 # Python
 #
-requirements: requirements.txt
-	@${PIP} install -r $<
-
 install: 
 	@${PIP} install .
 
 install_dev: 
-	@${PIP} install -e .
+	@${PIP} install -e .dev
 
 package-build:
 	@${PYTHON} -m build
