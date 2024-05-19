@@ -8,8 +8,6 @@ By Caleb Fuster, Manel Soria and Arnau Miró
 ESEIAAT UPC      
 ***********************************************************************************************************
 '''
-from __future__ import print_function, division
-
 import numpy as np, pickle as pkl
 
 from . import HGSDATA
@@ -20,7 +18,7 @@ from .utils import raiseError
 from .definitions import R
 
 
-class HGSData():
+class HGSData:
     '''
     '''
 

@@ -16,7 +16,7 @@ from .utils import raiseError
 CHANNEL_DICT = {}
 
 
-class channel(object):
+class channel:
 	'''
 	This is a channel for the cr counter
 	'''

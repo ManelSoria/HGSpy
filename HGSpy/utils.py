@@ -8,8 +8,6 @@ By Caleb Fuster, Manel Soria and Arnau Miró
 ESEIAAT UPC      
 ***********************************************************************************************************
 '''
-from __future__ import print_function, division
-
 import sys, numpy as np
 
 OPTS = {'warnings':True,'errors':True}
