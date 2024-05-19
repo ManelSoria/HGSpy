@@ -1,43 +1,48 @@
-'''
+"""
 ***********************************************************************************************************
 HGS CHEMICAL EQUATION SOLVER
 
 By Caleb Fuster, Manel Soria and Arnau Miró
 ESEIAAT UPC      
 ***********************************************************************************************************
-'''
+"""
+
 import os
 
 # Paths to important files
-DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),'data')
-HGSDATA  = os.path.join(DATAPATH,'data.hgs')
-RAWDATA  = os.path.join(DATAPATH,'DATA_7_coef.txt')
+DATAPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+HGSDATA = os.path.join(DATAPATH, "data.hgs")
+RAWDATA = os.path.join(DATAPATH, "DATA_7_coef.txt")
 
-from .            import data
-from HGSpy.hgs         import HGSData
+from . import data
+from HGSpy.hgs import HGSData
 from HGSpy.definitions import R
-from HGSpy.cr          import cr_start, cr_stop, cr_reset, cr_info
-from HGSpy.utils       import set_options, get_options
+from HGSpy.cr import cr_start, cr_stop, cr_reset, cr_info
+from HGSpy.utils import set_options, get_options
 
 # HGS functions
-from HGSpy.hgs_id         import hgs_id
-from HGSpy.hgs_find       import hgs_find
-from HGSpy.hgs_mixture    import hgs_add_mixture, hgs_subt_mixture, hgs_rebuild
-from HGSpy.hgs_print      import hgs_print_info
-from HGSpy.hgs_prop       import hgs_prop as prop, hgs_single as single
-from HGSpy.hgs_eq         import hgs_eq as eq
-from HGSpy.hgs_Tp         import hgs_Tp as Tp
+from HGSpy.hgs_id import hgs_id
+from HGSpy.hgs_find import hgs_find
+from HGSpy.hgs_mixture import hgs_add_mixture, hgs_subt_mixture, hgs_rebuild
+from HGSpy.hgs_print import hgs_print_info
+from HGSpy.hgs_prop import hgs_prop as prop, hgs_single as single
+from HGSpy.hgs_eq import hgs_eq as eq
+from HGSpy.hgs_Tp import hgs_Tp as Tp
 from HGSpy.hgs_isentropic import hgs_isentropic as isentropic
-from HGSpy.hgs_nozzle     import hgs_nozzle as nozzle
-from HGSpy.hgs_solver     import options
+from HGSpy.hgs_nozzle import hgs_nozzle as nozzle
+from HGSpy.hgs_solver import options
 
 # Some predefined functions
-id           = lambda species,hgs_data=HGSData.load(),raise_error=True : hgs_id(species,hgs_data,raise_error)
-add_mixture  = lambda name,species,percent,hgs_data=HGSData.load()     : hgs_add_mixture(name,species,percent,hgs_data)
-subt_mixture = lambda name,hgs_data=HGSData.load()                     : hgs_subt_mixture(name,hgs_data)
-rebuild      = lambda species,n,T,hgs_data=HGSData.load()              : hgs_rebuild(species,n,T,hgs_data)
-print_info   = lambda name,hgs_data=HGSData.load()                     : hgs_print_info(name,hgs_data)
-find         = lambda name,complete=False,hgs_data=HGSData.load()      : hgs_find(name,complete,hgs_data)
+id = lambda species, hgs_data=HGSData.load(), raise_error=True: hgs_id(
+    species, hgs_data, raise_error
+)
+add_mixture = lambda name, species, percent, hgs_data=HGSData.load(): hgs_add_mixture(
+    name, species, percent, hgs_data
+)
+subt_mixture = lambda name, hgs_data=HGSData.load(): hgs_subt_mixture(name, hgs_data)
+rebuild = lambda species, n, T, hgs_data=HGSData.load(): hgs_rebuild(species, n, T, hgs_data)
+print_info = lambda name, hgs_data=HGSData.load(): hgs_print_info(name, hgs_data)
+find = lambda name, complete=False, hgs_data=HGSData.load(): hgs_find(name, complete, hgs_data)
 
 del os, hgs, definitions, cr, utils
 del hgs_id, hgs_prop, hgs_solver, hgs_mixture, hgs_print
