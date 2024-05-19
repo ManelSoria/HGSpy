@@ -1,0 +1,36 @@
+name: Format Code
+
+on:
+  pull_request:
+    branches: [ master, next ]
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Cache pip
+        id: cache-pip
+        uses: actions/cache@v3
+        with:
+          path: ~/Library/Caches/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Run Black
+        run: |
+          if ! black --check HGSpy/; then
+            echo "Some files are not formatted correctly. Please run 'black HGSpy' locally to format them."
+            exit 1
