@@ -5,11 +5,9 @@ HGS CHEMICAL EQUATION SOLVER
 Data downloading routines
 
 By Caleb Fuster, Manel Soria and Arnau Miró
-ESEIAAT UPC      
+ESEIAAT UPC
 ***************************************************************************************************
 """
-
-from __future__ import print_function, division
 
 import os, urllib.request, numpy as np
 
