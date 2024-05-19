@@ -7,8 +7,8 @@ Data downloading routines
 By Caleb Fuster, Manel Soria and Arnau Miró
 ESEIAAT UPC      
 ***********************************************************************************************************
-=======
 """
+
 
 import os, urllib.request, numpy as np
 
