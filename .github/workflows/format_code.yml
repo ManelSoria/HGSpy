@@ -34,3 +34,4 @@ jobs:
           if ! black --check HGSpy/; then
             echo "Some files are not formatted correctly. Please run 'black HGSpy' locally to format them."
             exit 1
+          fi
