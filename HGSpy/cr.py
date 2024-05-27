@@ -5,7 +5,6 @@
 # Chrono module for performance profiling.
 #
 # Arnau Miro, Elena Terzic
-from __future__ import print_function, division
 import os
 
 import numpy as np, time as time_module, functools
@@ -16,7 +15,7 @@ from .utils import raiseError
 CHANNEL_DICT = {}
 
 
-class channel(object):
+class channel:
 	'''
 	This is a channel for the cr counter
 	'''
