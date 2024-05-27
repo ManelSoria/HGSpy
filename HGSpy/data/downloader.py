@@ -9,7 +9,6 @@ ESEIAAT UPC
 ***********************************************************************************************************
 """
 
-
 import os, urllib.request, numpy as np
 
 from .. import RAWDATA
