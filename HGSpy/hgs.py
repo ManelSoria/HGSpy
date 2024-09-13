@@ -1,4 +1,4 @@
-'''
+"""
 ***********************************************************************************************************
 HGS CHEMICAL EQUATION SOLVER
 
@@ -7,7 +7,8 @@ HGS main class
 By Caleb Fuster, Manel Soria and Arnau Miró
 ESEIAAT UPC      
 ***********************************************************************************************************
-'''
+"""
+
 import numpy as np, pickle as pkl
 
 from . import HGSDATA
@@ -19,61 +20,60 @@ from .definitions import R
 
 
 class HGSData:
-    '''
-    '''
+    """ """
 
     def __init__(self, data={}):
         self._data = data
 
     def __len__(self):
-        return len(self._data['name'])
+        return len(self._data["name"])
 
     def __str__(self):
         return self._data.__str__()
 
     # Set and get functions
     def __getitem__(self, key):
-        '''
+        """
         Recover the value of a variable given its key
-        '''
+        """
         return self._data[key]
 
     def __setitem__(self, key, value):
-        '''
+        """
         Set the value of a variable given its key
-        '''
+        """
         self._data[key] = value
 
     # -- IDs --
     def id(self, species, raise_error=True):
-        '''
+        """
         Run hgs_id
-        '''
+        """
         return hgs_id(species, self._data, raise_error=raise_error)
 
     # -- Add, remove and rebuild --
     def add(self, name, species, percent):
-        '''
+        """
         Run hgs_add_mixture
-        '''
+        """
         return hgs_add_mixture(name, species, percent, hgs_data=self)
 
     def subt(self, name):
-        '''
+        """
         Run hgs_subt_mixture
-        '''
+        """
         return hgs_subt_mixture(name, self)
 
     def rebuild(self, species, n, T):
-        '''
+        """
         Run hgs_rebuild
-        '''
+        """
         return hgs_rebuild(species, n, T, self)
 
     def print_info(self, name):
-        '''
+        """
         Run hgs_print_info
-        '''
+        """
         hgs_print_info(name, self)
 
     # -- Properties --
@@ -105,14 +105,15 @@ class HGSData:
         * ESEIAAT UPC
         """
         if all:
-            return self._data['lv'][ids], self._data['hv'][ids]
+            return self._data["lv"][ids], self._data["hv"][ids]
 
-        lims = self._data['lim'][ids]
+        lims = self._data["lim"][ids]
         if T < lims[0] or T > lims[2]:
             raiseError(
-                f"hgs_single: Ups... Temperature {T} is not between the limits ({lims[0]:.2f}K-{lims[2]:.2f}K) for {self._data['name'][ids]}")
+                f"hgs_single: Ups... Temperature {T} is not between the limits ({lims[0]:.2f}K-{lims[2]:.2f}K) for {self._data['name'][ids]}"
+            )
 
-        return self._data['lv'][ids] if T <= lims[1] else self._data['hv'][ids]
+        return self._data["lv"][ids] if T <= lims[1] else self._data["hv"][ids]
 
     def cp(self, ids, T):
         """
@@ -142,7 +143,7 @@ class HGSData:
         * ESEIAAT UPC
         """
         a = self.coefs(ids, T)
-        return R * (a[0] + np.sum([a[i] * T ** i for i in range(1, 5)]))  # [kJ/(mol*K)]
+        return R * (a[0] + np.sum([a[i] * T**i for i in range(1, 5)]))  # [kJ/(mol*K)]
 
     def cv(self, ids, T):
         """
@@ -200,9 +201,9 @@ class HGSData:
         * ESEIAAT UPC
         """
         a = self.coefs(ids, T)
-        return R * (a[5] + np.sum([a[i - 1] * T ** i / i for i in range(1, 6)]))  # [kJ/mol]
+        return R * (a[5] + np.sum([a[i - 1] * T**i / i for i in range(1, 6)]))  # [kJ/mol]
 
-    def s(self, ids, T, P, Pref=1.):
+    def s(self, ids, T, P, Pref=1.0):
         """
         *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
 
@@ -232,13 +233,14 @@ class HGSData:
         * ESEIAAT UPC
         """
         a = self.coefs(ids, T)
-        s = R * (a[6] + a[0] * np.log(T) + np.sum(
-            [a[i] * T ** i / i for i in range(1, 5)]))  # [kJ/(mol*K)]
-        if self._data['state'][ids] == "G" and not P == 0:
+        s = R * (
+            a[6] + a[0] * np.log(T) + np.sum([a[i] * T**i / i for i in range(1, 5)])
+        )  # [kJ/(mol*K)]
+        if self._data["state"][ids] == "G" and not P == 0:
             s -= R * np.log(P / Pref)  # [kJ/(mol*K)]
         return s
 
-    def g(self, ids, T, P, Pref=1.):
+    def g(self, ids, T, P, Pref=1.0):
         """
         *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*
 
@@ -270,48 +272,61 @@ class HGSData:
 
     # -- Utilities --
     def append_dict(self, d):
-        '''
+        """
         Append to the dataset
-        '''
+        """
         for key in d.keys():
             self._data[key].append(d[key])
 
     def save(self, fname=HGSDATA):
-        '''
+        """
         Save HGS data to file for exchange
-        '''
-        file = open(fname, 'wb')
+        """
+        file = open(fname, "wb")
         pkl.dump(self._data, file)
         file.close()
 
     @classmethod
     def load(cls, fname=HGSDATA):
-        '''
+        """
         Load HGS data
-        '''
-        file = open(fname, 'rb')
+        """
+        file = open(fname, "rb")
         data = pkl.load(file)
         file.close()
         return cls(data=data)
 
     @classmethod
-    def new(cls, name=[], nameback=[], state=[], lim=[], ena=[], nat=[], lv=[],
-            hv=[], mm=[], comb=[], cspec=[], cper=[]):
-        '''
+    def new(
+        cls,
+        name=[],
+        nameback=[],
+        state=[],
+        lim=[],
+        ena=[],
+        nat=[],
+        lv=[],
+        hv=[],
+        mm=[],
+        comb=[],
+        cspec=[],
+        cper=[],
+    ):
+        """
         New empty class instance
-        '''
+        """
         data = {
-            'name': name,
-            'nameback': nameback,
-            'state': state,
-            'lim': lim,
-            'ena': ena,
-            'nat': nat,
-            'lv': lv,
-            'hv': hv,
-            'mm': mm,
-            'comb': comb,
-            'cspec': cspec,
-            'cper': cper,
+            "name": name,
+            "nameback": nameback,
+            "state": state,
+            "lim": lim,
+            "ena": ena,
+            "nat": nat,
+            "lv": lv,
+            "hv": hv,
+            "mm": mm,
+            "comb": comb,
+            "cspec": cspec,
+            "cper": cper,
         }
         return cls(data=data)
